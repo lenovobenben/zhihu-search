@@ -9,22 +9,29 @@ Use this skill to research Zhihu discussions through OpenCLI. Treat Zhihu as a s
 
 ## Command
 
-Prefer `opencli zhihu ...`. If a needed command is missing from the installed release, use the local OpenCLI checkout:
+Always use the local OpenCLI source checkout because some Zhihu commands may not be in the published release yet:
 
 ```bash
 cd /Users/lihaidong/code/OpenCLI
 npm run dev -- zhihu <command> ...
 ```
 
+In examples below, `zhihu` means:
+
+```bash
+cd /Users/lihaidong/code/OpenCLI
+npm run dev -- zhihu
+```
+
 Useful read commands:
 
 ```bash
-opencli zhihu search "query" --type all --limit 10 -f json
-opencli zhihu recommend --limit 10 -f json
-opencli zhihu hot --limit 10 -f json
-opencli zhihu question <question_id> --limit 5 -f json
-opencli zhihu answer-detail "<answer_url>" --max-content 0 -f json
-opencli zhihu answer-comments "<answer_url>" --limit 10 --replies-limit 2 -f json
+zhihu search "query" --type all --limit 10 -f json
+zhihu recommend --limit 10 -f json
+zhihu hot --limit 10 -f json
+zhihu question <question_id> --limit 5 -f json
+zhihu answer-detail "<answer_url>" --max-content 0 -f json
+zhihu answer-comments "<answer_url>" --limit 10 --replies-limit 2 -f json
 ```
 
 ## Search Workflow
