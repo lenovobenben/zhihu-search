@@ -1,0 +1,6 @@
+interface:
+  display_name: "Zhihu Search"
+  short_description: "Research logged-in Zhihu discussions via OpenCLI"
+  default_prompt: "Use $zhihu-search to find what Zhihu users are saying about this topic."
+policy:
+  allow_implicit_invocation: true

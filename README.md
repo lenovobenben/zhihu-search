@@ -1,6 +1,6 @@
 # zhihu-search
 
-`zhihu-search` is a Codex/Claude skill project for researching Zhihu discussions through OpenCLI.
+`zhihu-search` is a Codex skill for researching Zhihu discussions through OpenCLI.
 
 The goal is to make Zhihu a safe, low-frequency, user-authorized Chinese discussion source for agents. It uses the user's own Chrome session, Browser Bridge extension, and logged-in Zhihu account through OpenCLI's Zhihu read commands.
 
@@ -17,29 +17,31 @@ General web search often misses or cannot access logged-in Zhihu content. OpenCL
 
 Zhihu should be treated as discussion context, not as an authoritative fact source.
 
-## Planned Skill
+## Skill
 
-The skill name will be:
+The skill name is:
 
 ```text
 zhihu-search
 ```
 
-Expected local structure:
+Repository structure:
 
 ```text
 zhihu-search/
   SKILL.md
+  agents/openai.yaml
 ```
 
-The skill should teach an agent when and how to use these OpenCLI commands:
+The skill teaches an agent when and how to use these OpenCLI read commands:
 
 ```bash
-opencli zhihu search "query" --type all --limit 20
-opencli zhihu recommend --limit 20
-opencli zhihu question <question_id> --limit 50
-opencli zhihu answer-detail "<answer_url>" --max-content 0
-opencli zhihu answer-comments "<answer_url>" --limit 20 --replies-limit 3
+opencli zhihu search "query" --type all --limit 10 -f json
+opencli zhihu recommend --limit 10 -f json
+opencli zhihu hot --limit 10 -f json
+opencli zhihu question <question_id> --limit 5 -f json
+opencli zhihu answer-detail "<answer_url>" --max-content 0 -f json
+opencli zhihu answer-comments "<answer_url>" --limit 10 --replies-limit 2 -f json
 ```
 
 ## Safety Rules
@@ -53,6 +55,6 @@ opencli zhihu answer-comments "<answer_url>" --limit 20 --replies-limit 3
 - Cite source URLs when summarizing.
 - Separate facts, opinions, personal experience, and speculation.
 
-## Current Status
+## Status
 
-This repository is only a starting point. The first useful artifact will be a concise `SKILL.md` that can be installed into a Codex skills directory.
+The concise `SKILL.md` is ready to install into a Codex skills directory. It keeps the core workflow small: search broadly, inspect representative questions and answers, sample comments when sentiment matters, weight by relevance and votes, and cite Zhihu URLs.
